@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ghost Auto Detailing
 
-## Getting Started
+A mobile-first customer inquiry platform for Ghost Auto Detailing, an interior-detailing specialist serving Louisville, Kentucky, and surrounding areas.
 
-First, run the development server:
+## Project Purpose
+
+Ghost Auto Detailing needs a professional online platform where customers can:
+
+- Review detailing packages and starting prices
+- Learn about mobile-service requirements
+- Submit a service inquiry
+- Describe their vehicle’s condition
+- Receive an inquiry reference number
+- Provide photographs for quote review
+- Leave a verified review after completed service
+
+The application will help reduce incomplete customer conversations, organize incoming leads, and create a repeatable workflow that can eventually support multiple detailing employees.
+
+## Planned Features
+
+- Mobile-first landing page
+- Interior-detailing packages and add-ons
+- Customer inquiry form
+- Unique inquiry reference numbers
+- Secure customer-information storage
+- Owner notifications
+- Inquiry and job-status tracking
+- Before-and-after gallery
+- Verified customer reviews
+- PayPal-hosted invoices and digital receipts
+- Apple Pay support through the payment provider
+
+## Technology Stack
+
+### Application
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+### AWS Infrastructure
+
+- Amazon API Gateway
+- AWS Lambda
+- Amazon DynamoDB
+- Amazon S3
+- Amazon CloudFront
+- Amazon CloudWatch
+- Amazon Simple Notification Service or Simple Email Service
+
+### Development and Deployment
+
+- Docker
+- DynamoDB Local
+- Terraform
+- GitHub
+- GitHub Actions
+
+## Security Approach
+
+The application will collect only the customer information required to review and respond to an inquiry.
+
+The Ghost application will not directly collect or store:
+
+- Credit-card numbers
+- Bank-account information
+- Customer passwords
+- Unnecessary personal information
+
+Payments will be processed through a third-party payment provider such as PayPal.
+
+## Current Status
+
+Project foundation created with Next.js, TypeScript, Tailwind CSS, ESLint, App Router, and Turbopack.
+
+The first implementation milestone is the customer-facing landing page and inquiry-form interface.
+
+## Local Development
+
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm install
