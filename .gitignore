@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# DynamoDB Local data
+/docker/dynamodb/
+
+# Allow safe environment documentation
+!.env.example
