@@ -1,3 +1,5 @@
+import InquiryForm from "@/components/inquiry-form";
+
 const trustPoints = ["Mobile service", "Upfront quote", "Digital receipts"];
 
 const servicePackages = [
@@ -332,6 +334,36 @@ export default function Home() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="inquiry" className="bg-[#dff8f2] py-20 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-teal-800">
+              Request your detail
+            </p>
+
+            <h2 className="text-4xl font-black leading-none tracking-[-0.045em] text-neutral-950 md:text-6xl">
+              Let us see what your interior needs.
+            </h2>
+
+            <p className="mt-6 max-w-lg leading-7 text-teal-950">
+              Complete this quick inquiry. It does not reserve an appointment.
+              We will review it and contact you with the recommended package,
+              price, and availability.
+            </p>
+
+            <aside className="mt-9 grid gap-2 border-l-4 border-neutral-950 pl-5 text-sm leading-6">
+              <strong>Mobile-service requirement</strong>
+              <span>
+                A safe working area is required. Some services require a working
+                exterior water-hose connection and electrical outlet.
+              </span>
+            </aside>
+          </div>
+
+          <InquiryForm />
         </div>
       </section>
     </main>
