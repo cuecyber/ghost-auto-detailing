@@ -1,5 +1,54 @@
 const trustPoints = ["Mobile service", "Upfront quote", "Digital receipts"];
 
+const servicePackages = [
+  {
+    name: "Ghost Refresh",
+    startingPrice: 50,
+    label: "Maintenance clean",
+    description: "For regularly maintained interiors needing a quick reset.",
+    features: [
+      "Quick interior vacuum",
+      "Dashboard, console, and door wipe-down",
+      "Interior glass",
+      "Up to 60 minutes",
+    ],
+  },
+  {
+    name: "Interior Detail",
+    startingPrice: 125,
+    label: "Most popular",
+    description: "A thorough interior detail without removing the seats.",
+    features: [
+      "Thorough vacuum and crevice cleaning",
+      "Panels, vents, and cupholders",
+      "Light spot treatment",
+      "Small SUVs and trucks start at $150",
+    ],
+  },
+  {
+    name: "Interior Restoration",
+    startingPrice: 275,
+    label: "Deep reset",
+    description: "For stained, neglected, or heavily used interiors.",
+    features: [
+      "Carpet shampoo and extraction",
+      "Seat-material treatment",
+      "Stain pretreatment",
+      "Front-seat removal when safe",
+    ],
+  },
+];
+
+const serviceAddOns = [
+  "Headliner · $50+",
+  "Trunk · $35+",
+  "Cargo area · $40+",
+  "Pet hair · $40+",
+  "Heavy stains · $40+",
+  "Odor treatment · $50+",
+  "Exterior wash · $50+",
+];
+
 export default function Home() {
   return (
     <main>
@@ -89,6 +138,103 @@ export default function Home() {
               REAL INTERIORS. VISIBLE RESULTS.
             </strong>
           </div>
+        </div>
+      </section>
+
+      <section id="services" className="bg-[#f4f3ef] py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-5">
+          <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-teal-800">
+            Simple starting prices
+          </p>
+
+          <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <h2 className="max-w-3xl text-4xl font-black leading-none tracking-[-0.045em] text-neutral-950 md:text-6xl">
+              Pick the clean your ride needs.
+            </h2>
+
+            <p className="max-w-md leading-7 text-neutral-600">
+              Final pricing is confirmed after reviewing vehicle size,
+              condition, and customer photographs.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {servicePackages.map((service, index) => {
+              const featured = index === 1;
+
+              return (
+                <article
+                  key={service.name}
+                  className={`rounded-3xl border p-7 ${
+                    featured
+                      ? "border-neutral-950 bg-neutral-950 text-white md:-translate-y-3"
+                      : "border-neutral-300 bg-white text-neutral-950"
+                  }`}
+                >
+                  <span
+                    className={`inline-block rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] ${
+                      featured
+                        ? "bg-lime-300 text-neutral-950"
+                        : "bg-neutral-100 text-neutral-700"
+                    }`}
+                  >
+                    {service.label}
+                  </span>
+
+                  <h3 className="mt-7 text-2xl font-black">{service.name}</h3>
+
+                  <p
+                    className={`mt-2 leading-6 ${
+                      featured ? "text-neutral-300" : "text-neutral-600"
+                    }`}
+                  >
+                    {service.description}
+                  </p>
+
+                  <p className="mt-7 text-sm">
+                    Starting at{" "}
+                    <strong className="text-5xl">
+                      ${service.startingPrice}
+                    </strong>
+                  </p>
+
+                  <ul
+                    className={`my-7 space-y-3 border-t pt-6 text-sm ${
+                      featured ? "border-neutral-700" : "border-neutral-200"
+                    }`}
+                  >
+                    {service.features.map((feature) => (
+                      <li key={feature}>✓ {feature}</li>
+                    ))}
+                  </ul>
+
+                  <a href="#inquiry" className="font-black underline">
+                    Choose this service →
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            <strong className="mr-2">Build your detail</strong>
+
+            {serviceAddOns.map((addOn) => (
+              <span
+                key={addOn}
+                className="rounded-full border border-neutral-300 bg-white px-4 py-3 text-sm"
+              >
+                {addOn}
+              </span>
+            ))}
+          </div>
+
+          <p className="mt-6 max-w-5xl text-xs leading-5 text-neutral-500">
+            The $50 Ghost Refresh is for maintained interiors only. It excludes
+            extraction, heavy stains, pet hair, excessive trash, and cargo
+            areas. Interior Restoration starts at $325 for small SUVs or trucks
+            and $375 for large or three-row vehicles.
+          </p>
         </div>
       </section>
     </main>
