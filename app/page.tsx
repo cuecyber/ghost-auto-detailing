@@ -366,6 +366,47 @@ export default function Home() {
           <InquiryForm />
         </div>
       </section>
+
+      <footer className="bg-neutral-950 py-12 pb-28 text-white md:pb-12">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-7 px-5 md:flex-row md:items-center">
+          <a href="#top" className="flex items-center gap-2 no-underline">
+            <span className="grid h-10 w-10 place-items-center rounded-full border-2 border-neutral-950 bg-lime-300 text-xl font-black text-neutral-950">
+              G
+            </span>
+
+            <span className="font-black tracking-wider">
+              GHOST
+              <small className="block text-[9px] tracking-[0.2em] text-neutral-400">
+                AUTO DETAILING
+              </small>
+            </span>
+          </a>
+
+          <p className="text-sm text-neutral-400">
+            Mobile interior detailing · Louisville, Kentucky
+          </p>
+
+          <p className="text-sm text-neutral-400">
+            Business call and text number coming soon
+          </p>
+        </div>
+      </footer>
+
+      <div className="fixed bottom-0 left-0 right-0 z-50 grid grid-cols-[1fr_1.5fr] gap-2 border-t border-neutral-200 bg-white/95 p-3 shadow-2xl backdrop-blur md:hidden">
+        <a
+          href="#services"
+          className="rounded-xl border border-neutral-950 p-3 text-center text-sm font-black text-neutral-950"
+        >
+          View prices
+        </a>
+
+        <a
+          href="#inquiry"
+          className="rounded-xl bg-neutral-950 p-3 text-center text-sm font-black text-white"
+        >
+          Request a detail
+        </a>
+      </div>
     </main>
   );
 }
