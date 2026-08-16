@@ -1,69 +1,96 @@
-import Image from "next/image";
+const trustPoints = ["Mobile service", "Upfront quote", "Digital receipts"];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      <header className="mx-auto flex h-[78px] max-w-7xl items-center justify-between px-5">
+        <a href="#top" className="flex items-center gap-2 no-underline">
+          <span className="grid h-10 w-10 place-items-center rounded-full border-2 border-neutral-950 bg-lime-300 text-xl font-black text-neutral-950">
+            G
+          </span>
+
+          <span className="font-black tracking-wider text-neutral-950">
+            GHOST
+            <small className="block text-[9px] tracking-[0.2em] text-neutral-500">
+              AUTO DETAILING
+            </small>
+          </span>
+        </a>
+
+        <nav className="hidden items-center gap-8 text-sm font-bold md:flex">
+          <a href="#services">Services</a>
+          <a href="#gallery">Results</a>
+          <a href="#inquiry">Get a quote</a>
+        </nav>
+
+        <a
+          href="#inquiry"
+          className="hidden rounded-full bg-neutral-950 px-5 py-3 text-sm font-bold text-white md:block"
+        >
+          Request a detail
+        </a>
+      </header>
+
+      <section
+        id="top"
+        className="bg-[radial-gradient(circle_at_80%_20%,rgba(85,230,211,0.35),transparent_25%),linear-gradient(135deg,#f4f3ef,#e5eae3)] py-16 md:py-24"
+      >
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-teal-800">
+              Louisville mobile interior specialists
+            </p>
+
+            <h1 className="max-w-3xl text-5xl font-black leading-[0.95] tracking-[-0.055em] text-neutral-950 md:text-7xl">
+              We make dirty interiors{" "}
+              <span className="bg-lime-300 px-1">disappear.</span>
+            </h1>
+
+            <p className="my-7 max-w-2xl text-lg leading-8 text-neutral-600">
+              Heavy stains, daily grime, pet hair, and neglected carpets—we
+              bring the clean to you and restore the space you drive in.
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="#inquiry"
+                className="rounded-full bg-neutral-950 px-6 py-4 font-bold text-white"
+              >
+                Get my estimate
+              </a>
+
+              <a
+                href="#services"
+                className="rounded-full border-2 border-neutral-950 px-6 py-[14px] font-bold text-neutral-950"
+              >
+                View packages
+              </a>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-5 text-sm font-bold text-neutral-700">
+              {trustPoints.map((point) => (
+                <span key={point}>✓ {point}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative grid h-[330px] grid-cols-2 overflow-hidden rounded-3xl shadow-2xl md:h-[460px]">
+            <div className="flex flex-col justify-end bg-gradient-to-b from-stone-500 to-stone-800 p-6 pb-20 text-white">
+              <strong className="text-xs tracking-[0.2em]">BEFORE</strong>
+              <span className="text-xs">Stains · crumbs · buildup</span>
+            </div>
+
+            <div className="flex flex-col justify-end bg-gradient-to-b from-teal-500 to-teal-950 p-6 pb-20 text-white">
+              <strong className="text-xs tracking-[0.2em]">AFTER</strong>
+              <span className="text-xs">Extracted · treated · refreshed</span>
+            </div>
+
+            <strong className="absolute bottom-5 left-5 right-5 rounded-xl bg-lime-300 p-4 text-center text-xs tracking-[0.14em] text-neutral-950">
+              REAL INTERIORS. VISIBLE RESULTS.
+            </strong>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
