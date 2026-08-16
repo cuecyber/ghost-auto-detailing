@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:create": "node --env-file=.env.local scripts/create-local-table.mjs"
+    "db:create": "node --env-file=.env.local scripts/create-local-table.mjs",
+    "db:list": "node --env-file=.env.local scripts/list-local-inquiries.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1111.0",

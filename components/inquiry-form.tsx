@@ -13,14 +13,65 @@ const conditionOptions = [
 ];
 
 export default function InquiryForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
-  }
 
-  if (submitted) {
+    setErrorMessage("");
+    setIsSubmitting(true);
+
+    const formData = new FormData(event.currentTarget);
+
+    const inquiry = {
+      firstName: formData.get("firstName"),
+      phone: formData.get("phone"),
+      vehicleYear: formData.get("vehicleYear"),
+      vehicle: formData.get("vehicle"),
+      requestedService: formData.get("requestedService"),
+      conditions: formData.getAll("conditions"),
+      details: formData.get("details"),
+      zipCode: formData.get("zipCode"),
+      utilities: formData.get("utilities"),
+      contactConsent: formData.get("contactConsent") === "on",
+    };
+
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inquiry),
+      });
+
+      const data = (await response.json()) as {
+        message?: string;
+        referenceNumber?: string;
+      };
+
+      if (!response.ok) {
+        throw new Error(data.message ?? "Unable to submit the inquiry.");
+      }
+
+      if (!data.referenceNumber) {
+        throw new Error("The inquiry reference number was not returned.");
+      }
+
+      setReferenceNumber(data.referenceNumber);
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Unable to submit the inquiry. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+  if (referenceNumber) {
     return (
       <div className="rounded-3xl bg-white p-8 text-center text-neutral-950 shadow-xl md:p-14">
         <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-lime-300 text-3xl font-black">
@@ -30,14 +81,16 @@ export default function InquiryForm() {
         <h3 className="mt-6 text-3xl font-black">Inquiry draft complete.</h3>
 
         <p className="mx-auto mt-4 max-w-lg leading-7 text-neutral-600">
-          The form interface is working. Secure storage, owner notifications,
-          and customer reference numbers will be connected during the backend
-          milestone.
+          Your inquiry was saved successfully. Keep this reference number for
+          your records.
         </p>
 
+        <strong className="mt-6 block rounded-xl bg-neutral-100 p-4 text-xl tracking-wider text-neutral-950">
+          {referenceNumber}
+        </strong>
         <button
           type="button"
-          onClick={() => setSubmitted(false)}
+          onClick={() => setReferenceNumber(null)}
           className="mt-7 rounded-xl bg-neutral-950 px-6 py-4 font-black text-white"
         >
           Start another inquiry
@@ -96,7 +149,6 @@ export default function InquiryForm() {
           />
         </label>
       </div>
-
       <label className="mt-5 grid gap-2 text-sm font-bold">
         Which service fits best?
         <select
@@ -114,7 +166,6 @@ export default function InquiryForm() {
           <option value="recommendation">Not sure — recommend a service</option>
         </select>
       </label>
-
       <fieldset className="mt-5">
         <legend className="text-sm font-bold">What are we dealing with?</legend>
 
@@ -135,7 +186,6 @@ export default function InquiryForm() {
           ))}
         </div>
       </fieldset>
-
       <label className="mt-5 grid gap-2 text-sm font-bold">
         Tell us more
         <textarea
@@ -146,7 +196,6 @@ export default function InquiryForm() {
           placeholder="Where are the worst areas? What results are you hoping for?"
         />
       </label>
-
       <div className="mt-5 grid gap-4 md:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold">
           Service ZIP code
@@ -178,7 +227,6 @@ export default function InquiryForm() {
           </select>
         </label>
       </div>
-
       <label className="mt-5 grid gap-2 text-sm font-bold">
         Interior photographs
         <input
@@ -192,7 +240,6 @@ export default function InquiryForm() {
           Photograph upload storage will be connected later.
         </span>
       </label>
-
       <label className="mt-6 flex items-start gap-3 text-sm leading-6">
         <input
           required
@@ -203,17 +250,24 @@ export default function InquiryForm() {
         I agree that Ghost Auto Detailing may call or text me about this
         inquiry.
       </label>
-
+      {errorMessage && (
+        <p
+          role="alert"
+          className="mt-5 rounded-xl border border-red-300 bg-red-50 p-4 text-sm font-bold text-red-800"
+        >
+          {errorMessage}
+        </p>
+      )}
       <button
         type="submit"
-        className="mt-6 w-full rounded-xl bg-neutral-950 p-4 font-black text-white"
+        disabled={isSubmitting}
+        className="mt-6 w-full rounded-xl bg-neutral-950 p-4 font-black text-white disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Send my inquiry →
+        {isSubmitting ? "Sending inquiry..." : "Send my inquiry →"}
       </button>
-
       <small className="mt-3 block text-center text-neutral-500">
         This form does not collect payment information.
-      </small>
+      </small>{" "}
     </form>
   );
 }
