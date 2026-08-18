@@ -35,6 +35,10 @@ export const inquirySchema = z.object({
 
   utilities: z.enum(["water-electric", "water", "electric", "neither"]),
 
+  website: z.string().max(0).optional().default(""),
+
+  formStartedAt: z.number().int().positive(),
+
   contactConsent: z.literal(true),
 });
 

@@ -16,6 +16,7 @@ export default function InquiryForm() {
   const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formStartedAt, setFormStartedAt] = useState(() => Date.now());
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,6 +36,8 @@ export default function InquiryForm() {
       details: formData.get("details"),
       zipCode: formData.get("zipCode"),
       utilities: formData.get("utilities"),
+      website: formData.get("website"),
+      formStartedAt,
       contactConsent: formData.get("contactConsent") === "on",
     };
 
@@ -90,7 +93,10 @@ export default function InquiryForm() {
         </strong>
         <button
           type="button"
-          onClick={() => setReferenceNumber(null)}
+          onClick={() => {
+            setReferenceNumber(null);
+            setFormStartedAt(Date.now());
+          }}
           className="mt-7 rounded-xl bg-neutral-950 px-6 py-4 font-black text-white"
         >
           Start another inquiry
@@ -104,6 +110,19 @@ export default function InquiryForm() {
       onSubmit={handleSubmit}
       className="rounded-3xl bg-white p-6 text-neutral-950 shadow-xl md:p-8"
     >
+      <div
+        aria-hidden="true"
+        className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+      >
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <div className="grid gap-4 md:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold">
           First name
