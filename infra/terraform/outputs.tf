@@ -7,3 +7,8 @@ output "owner_notifications_topic_arn" {
   description = "ARN of the SNS topic used for owner notifications."
   value       = aws_sns_topic.owner_notifications.arn
 }
+
+output "inquiries_api_url" {
+  description = "Public endpoint used to submit customer inquiries."
+  value       = "${aws_apigatewayv2_api.inquiries.api_endpoint}/inquiries"
+}

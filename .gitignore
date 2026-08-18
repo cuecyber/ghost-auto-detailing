@@ -55,3 +55,6 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 .terraform.tfstate.lock.info
+
+# Lambda build output
+/dist/

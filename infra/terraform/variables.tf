@@ -25,3 +25,8 @@ variable "owner_notification_email" {
     error_message = "Owner notification email must be a valid email address."
   }
 }
+variable "allowed_origins" {
+  description = "Browser origins allowed to submit inquiries."
+  type        = list(string)
+  default     = ["http://localhost:3000"]
+}
