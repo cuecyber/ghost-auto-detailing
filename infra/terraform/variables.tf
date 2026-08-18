@@ -14,3 +14,14 @@ variable "environment" {
     error_message = "Environment must be development, staging, or production."
   }
 }
+
+variable "owner_notification_email" {
+  description = "Email address that receives new-inquiry notifications."
+  type        = string
+  sensitive   = true
+
+  validation {
+    condition     = can(regex("^[^@]+@[^@]+\\.[^@]+$", var.owner_notification_email))
+    error_message = "Owner notification email must be a valid email address."
+  }
+}
