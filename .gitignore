@@ -45,3 +45,13 @@ next-env.d.ts
 
 # Allow safe environment documentation
 !.env.example
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+.terraform.tfstate.lock.info
