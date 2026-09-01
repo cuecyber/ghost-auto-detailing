@@ -12,6 +12,8 @@ const conditionOptions = [
   "Exterior service too",
 ];
 
+const inquiriesApiUrl = process.env.NEXT_PUBLIC_INQUIRIES_API_URL;
+
 export default function InquiryForm() {
   const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -22,6 +24,11 @@ export default function InquiryForm() {
     event.preventDefault();
 
     setErrorMessage("");
+    if (!inquiriesApiUrl) {
+      setErrorMessage("The inquiry service is not configured.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     const formData = new FormData(event.currentTarget);
@@ -42,7 +49,7 @@ export default function InquiryForm() {
     };
 
     try {
-      const response = await fetch("/api/inquiries", {
+      const response = await fetch(inquiriesApiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,10 +88,9 @@ export default function InquiryForm() {
           ✓
         </span>
 
-        <h3 className="mt-6 text-3xl font-black">Inquiry draft complete.</h3>
-
+        <h3 className="mt-6 text-3xl font-black">Inquiry received.</h3>
         <p className="mx-auto mt-4 max-w-lg leading-7 text-neutral-600">
-          Your inquiry was saved successfully. Keep this reference number for
+          Your inquiry was received successfully. Keep this reference number for
           your records.
         </p>
 
@@ -246,19 +252,6 @@ export default function InquiryForm() {
           </select>
         </label>
       </div>
-      <label className="mt-5 grid gap-2 text-sm font-bold">
-        Interior photographs
-        <input
-          name="photos"
-          type="file"
-          accept="image/*"
-          multiple
-          className="rounded-xl border border-dashed border-neutral-400 bg-neutral-50 p-4 font-normal"
-        />
-        <span className="font-normal text-neutral-500">
-          Photograph upload storage will be connected later.
-        </span>
-      </label>
       <label className="mt-6 flex items-start gap-3 text-sm leading-6">
         <input
           required
