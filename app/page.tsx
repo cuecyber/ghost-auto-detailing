@@ -61,8 +61,9 @@ const processSteps = [
   },
   {
     number: "02",
-    title: "Send photographs",
-    description: "We review the vehicle’s condition before traveling.",
+    title: "Describe the condition",
+    description:
+      "Tell us about stains, pet hair, odors, spills, or other problem areas.",
   },
   {
     number: "03",
@@ -244,12 +245,13 @@ export default function Home() {
           </div>
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <strong className="mr-2">Build your detail</strong>
-
+            <strong className="mr-2 rounded-full bg-neutral-950 px-4 py-3 text-sm text-white">
+              Build your detail
+            </strong>
             {serviceAddOns.map((addOn) => (
               <span
                 key={addOn}
-                className="rounded-full border border-neutral-300 bg-white px-4 py-3 text-sm"
+                className="rounded-full border-2 border-neutral-950 bg-white px-4 py-3 text-sm font-bold text-neutral-950 shadow-sm"
               >
                 {addOn}
               </span>
@@ -322,9 +324,9 @@ export default function Home() {
             {processSteps.map((step) => (
               <article
                 key={step.number}
-                className="border-t border-neutral-300 pt-6"
+                className="border-t border-neutral-300 pt-6 text-neutral-950"
               >
-                <span className="rounded-md bg-lime-300 px-2 py-2 text-xs font-black">
+                <span className="rounded-md bg-lime-300 px-2 py-2 text-xs font-black text-neutral-950">
                   {step.number}
                 </span>
 
@@ -354,8 +356,10 @@ export default function Home() {
               price, and availability.
             </p>
 
-            <aside className="mt-9 grid gap-2 border-l-4 border-neutral-950 pl-5 text-sm leading-6">
-              <strong>Mobile-service requirement</strong>
+            <aside className="mt-9 grid gap-2 border-l-4 border-neutral-950 pl-5 text-sm leading-6 text-teal-950">
+              <strong className="text-neutral-950">
+                Mobile-service requirement
+              </strong>{" "}
               <span>
                 A safe working area is required. Some services require a working
                 exterior water-hose connection and electrical outlet.
