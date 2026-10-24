@@ -116,7 +116,11 @@ export async function handler(
         vehicleYear: customerInquiry.vehicleYear,
         vehicle: customerInquiry.vehicle,
         requestedService: customerInquiry.requestedService,
+        conditions: customerInquiry.conditions,
+        details: customerInquiry.details,
         zipCode: customerInquiry.zipCode,
+        utilities: customerInquiry.utilities,
+        contactConsent: customerInquiry.contactConsent,
       });
     } catch (notificationError) {
       console.error("Owner notification failed", {

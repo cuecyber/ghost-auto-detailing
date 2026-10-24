@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const conditionOptions = [
   "Heavy stains",
@@ -19,6 +19,23 @@ export default function InquiryForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStartedAt, setFormStartedAt] = useState(() => Date.now());
+  const [requestedService, setRequestedService] = useState("");
+
+  useEffect(() => {
+    function handleServiceSelection(event: Event) {
+      const serviceEvent = event as CustomEvent<string>;
+      setRequestedService(serviceEvent.detail);
+    }
+
+    window.addEventListener("ghost:service-selected", handleServiceSelection);
+
+    return () => {
+      window.removeEventListener(
+        "ghost:service-selected",
+        handleServiceSelection,
+      );
+    };
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -101,6 +118,7 @@ export default function InquiryForm() {
           type="button"
           onClick={() => {
             setReferenceNumber(null);
+            setRequestedService("");
             setFormStartedAt(Date.now());
           }}
           className="mt-7 rounded-xl bg-neutral-950 px-6 py-4 font-black text-white"
@@ -179,9 +197,11 @@ export default function InquiryForm() {
         <select
           required
           name="requestedService"
-          defaultValue=""
+          value={requestedService}
+          onChange={(event) => setRequestedService(event.target.value)}
           className="rounded-xl border border-neutral-300 bg-neutral-50 p-4 font-normal"
         >
+          {" "}
           <option value="" disabled>
             Select a service
           </option>

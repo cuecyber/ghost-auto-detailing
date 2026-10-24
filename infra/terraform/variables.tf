@@ -28,5 +28,9 @@ variable "owner_notification_email" {
 variable "allowed_origins" {
   description = "Browser origins allowed to submit inquiries."
   type        = list(string)
-  default     = ["http://localhost:3000"]
+
+  default = [
+    "http://localhost:3000",
+    "https://main.d2k6n4jnju5mq7.amplifyapp.com",
+  ]
 }

@@ -1,9 +1,11 @@
 import InquiryForm from "@/components/inquiry-form";
+import ServiceChoiceLink from "@/components/service-choice-link";
 
 const trustPoints = ["Mobile service", "Upfront quote", "Digital receipts"];
 
 const servicePackages = [
   {
+    value: "refresh" as const,
     name: "Ghost Refresh",
     startingPrice: 50,
     label: "Maintenance clean",
@@ -16,6 +18,7 @@ const servicePackages = [
     ],
   },
   {
+    value: "detail" as const,
     name: "Interior Detail",
     startingPrice: 125,
     label: "Most popular",
@@ -28,6 +31,7 @@ const servicePackages = [
     ],
   },
   {
+    value: "restoration" as const,
     name: "Interior Restoration",
     startingPrice: 275,
     label: "Deep reset",
@@ -208,9 +212,7 @@ export default function Home() {
                   >
                     {service.label}
                   </span>
-
                   <h3 className="mt-7 text-2xl font-black">{service.name}</h3>
-
                   <p
                     className={`mt-2 leading-6 ${
                       featured ? "text-neutral-300" : "text-neutral-600"
@@ -218,14 +220,12 @@ export default function Home() {
                   >
                     {service.description}
                   </p>
-
                   <p className="mt-7 text-sm">
                     Starting at{" "}
                     <strong className="text-5xl">
                       ${service.startingPrice}
                     </strong>
                   </p>
-
                   <ul
                     className={`my-7 space-y-3 border-t pt-6 text-sm ${
                       featured ? "border-neutral-700" : "border-neutral-200"
@@ -235,10 +235,7 @@ export default function Home() {
                       <li key={feature}>✓ {feature}</li>
                     ))}
                   </ul>
-
-                  <a href="#inquiry" className="font-black underline">
-                    Choose this service →
-                  </a>
+                  <ServiceChoiceLink service={service.value} />{" "}
                 </article>
               );
             })}
