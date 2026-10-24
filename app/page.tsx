@@ -1,7 +1,7 @@
 import InquiryForm from "@/components/inquiry-form";
 import ServiceChoiceLink from "@/components/service-choice-link";
 
-const trustPoints = ["Mobile service", "Upfront quote", "Digital receipts"];
+const trustPoints = ["Mobile service", "Upfront quote", "Inquiry reference"];
 
 const servicePackages = [
   {
@@ -186,7 +186,7 @@ export default function Home() {
 
             <p className="max-w-md leading-7 text-neutral-600">
               Final pricing is confirmed after reviewing vehicle size,
-              condition, and customer photographs.
+              condition, and service requirements.{" "}
             </p>
           </div>
 
