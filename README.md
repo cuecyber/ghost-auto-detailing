@@ -4,6 +4,8 @@ A production-deployed customer inquiry platform for a mobile auto-detailing busi
 
 [View the live application](https://main.d2k6n4jnju5mq7.amplifyapp.com)
 
+![Ghost Auto Detailing deployed homepage](docs/screenshots/ghost-homepage.png)
+
 ## Overview
 
 Ghost Auto Detailing turns an informal quote-request process into a structured serverless workflow. Customers can compare detailing packages, select a service, describe their vehicle’s condition, and submit an inquiry through a responsive website.
@@ -24,6 +26,16 @@ Each successful inquiry receives a unique reference number. The complete inquiry
 - API Gateway throttling and origin-restricted CORS
 - CloudWatch Lambda logging
 - Static frontend deployment with automatic GitHub-based builds
+
+## Interface
+
+### Service packages
+
+![Ghost Auto Detailing service packages](docs/screenshots/ghost-services.png)
+
+### Customer inquiry experience
+
+![Ghost Auto Detailing inquiry form](docs/screenshots/ghost-inquiry.png)
 
 ## Architecture
 
